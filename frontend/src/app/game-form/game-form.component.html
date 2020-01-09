@@ -1,0 +1,49 @@
+<form [formGroup]="gameFormGroup" class="game-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Title" formControlName="title" required>
+    <mat-hint align="end">The title of the game</mat-hint>
+    <mat-error *ngIf="gameFormGroup.controls.title.hasError('required')">Title is required</mat-error>
+    <mat-error *ngIf="gameFormGroup.controls.title.hasError('badWord')">
+      Title contains"badword"
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Price" formControlName="price">
+    <mat-hint align="end">The price of the game</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Genre" formControlName="genre">
+      <mat-option [value]="genre.key" *ngFor="let genre of genreService.genreNames | keyvalue">{{genre.value}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The genre of the game</mat-hint>
+  </mat-form-field>
+
+  <app-date placeholder="Release date" formControlName="release_date" hint="The release date of the game"
+            [required]="true">
+  </app-date>
+
+  <mat-form-field>
+    <mat-select placeholder="Developer" formControlName="developer">
+      <mat-option [value]="null">Unknown</mat-option>
+      <mat-option [value]="developerOption.id" *ngFor="let developerOption of developerOptions">{{developerOption.name}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The developer of the game</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Platforms</mat-label>
+    <mat-select placeholder="Platforms" formControlName="platform" multiple>
+      <mat-option *ngFor="let platformOption of platformOptions" [value]="platformOption.id">{{platformOption.full_name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br/>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!gameFormGroup.valid" (click)="createGame()">
+      <span *ngIf="!gameFormGroup.controls.id.value">Create</span>
+      <span *ngIf="gameFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>
