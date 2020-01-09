@@ -11,3 +11,6 @@ Es gibt zwischen Games und Platforms eine Many to Many relationship
 Für den Namen des CEO beim Developer gibt es einen Custom Validator, damit keine Zahlen eingefügt werden können.
 
 Wenn man ein Spiel oder einen Developer löschen will erscheint ein Confirmation Dialog.
+
+Login: admin
+Password: admin
