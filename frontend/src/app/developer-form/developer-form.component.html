@@ -1,0 +1,38 @@
+<form [formGroup]="developerFormGroup" class="developer-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name" formControlName="name" required>
+    <mat-hint align="end">The name of the developer</mat-hint>
+    <mat-error *ngIf="developerFormGroup.controls.name.hasError('required')">Name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Country" formControlName="country" required>
+    <mat-hint align="end">The country of the developer</mat-hint>
+    <mat-error *ngIf="developerFormGroup.controls.country.hasError('required')">Country is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Count of Employee" formControlName="employee_count">
+    <mat-hint align="end">The count of employees of the developer</mat-hint>
+  </mat-form-field>
+
+  <app-date placeholder="Foundation date" formControlName="foundation_date" hint="The foundation date of the developer"
+            [required]="true">
+  </app-date>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Name of CEO" formControlName="ceo_name">
+    <mat-hint align="end">The name of the CEO</mat-hint>
+    <mat-error *ngIf="developerFormGroup.controls.ceo_name.hasError('number')">
+      Name of CEO contains a number!
+    </mat-error>
+  </mat-form-field>
+
+  <br/>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!developerFormGroup.valid" (click)="createDeveloper()">
+      <span *ngIf="!developerFormGroup.controls.id.value">Create</span>
+      <span *ngIf="developerFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>

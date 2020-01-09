@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <button mat-button [matMenuTriggerFor]="movieMenu">Game</button>
+  <mat-menu #movieMenu="matMenu">
+    <button mat-menu-item routerLink="game-list">List games</button>
+    <button mat-menu-item routerLink="game-form">Create game</button>
+    <button mat-menu-item routerLink="developer-list">List developers</button>
+    <button mat-menu-item routerLink="developer-form">Create developer</button>
+    <app-logout *ngIf="isLoggedIn"></app-logout>
+    <button mat-menu-item routerLink="login" *ngIf="isLoggedIn == false">Login</button>
+  </mat-menu>
+</mat-toolbar>
+
+
+
+<router-outlet></router-outlet>
+
+
